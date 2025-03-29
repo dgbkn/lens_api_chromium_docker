@@ -1,0 +1,21 @@
+{
+    "name": "lens-ocr-service",
+    "version": "1.0.0",
+    "description": "A lightweight OCR service using Chrome Lens OCR, Express, and Multer.",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "chrome-lens-ocr": "^4.0.4",
+      "express": "^4.21.2",
+      "multer": "^1.4.5-lts.2"
+    },
+    "engines": {
+      "node": ">=18.0.0"
+    },
+    "author": "Dev Goyal",
+    "license": "MIT"
+  }
+  
