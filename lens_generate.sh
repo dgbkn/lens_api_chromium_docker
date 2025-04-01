@@ -1,1 +1,0 @@
-pbjs -t static-module -w commonjs -o services/lens_protos.js proto/*.proto
