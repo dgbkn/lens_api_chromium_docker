@@ -10,7 +10,7 @@ A lightweight Node.js OCR service utilizing [chrome-lens-ocr](https://www.npmjs.
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-  - [POST /upload](#post-upload)
+  - [POST /api/ocr/glens](#post-apiocrglens)
   - [GET /scan](#get-scan)
 - [Docker Deployment](#docker-deployment)
 - [Contributing](#contributing)
@@ -75,77 +75,36 @@ To set up the project locally, follow these steps:
 
 ## Usage
 
-### POST /upload
+### POST /api/ocr/glens
 
-Endpoint to upload an image file for OCR processing.
+Endpoint to perform OCR using Google Lens internal API (requires Protobuf definitions).
 
-- **URL:** `http://localhost:3000/upload`
+- **URL:** `http://localhost:3000/api/ocr/glens`
 - **Method:** `POST`
 - **Headers:** `Content-Type: multipart/form-data`
 - **Body:** Form-data with a key `image` containing the image file.
 
 **Example using cURL:**
 
-
 ```bash
-curl -X POST -F "image=@path_to_your_image.png" http://localhost:3000/upload
+curl -X POST -F "image=@path_to_your_image.png" http://localhost:3000/api/ocr/glensweb
 ```
 
 
-**Response:**
+### POST /api/ocr/glensweb
 
+Endpoint to perform OCR by simulating requests to the Google Lens website.
 
-```json
-{
-  "text": "Extracted text from the image",
-  "confidence": 0.98,
-  "words": [
-    {
-      "word": "Extracted",
-      "boundingBox": [x1, y1, x2, y2],
-      "confidence": 0.99
-    },
-    ...
-  ]
-}
-```
-
-
-### GET /scan
-
-Endpoint to fetch an image from a URL and perform OCR.
-
-- **URL:** `http://localhost:3000/scan?url=IMAGE_URL`
-- **Method:** `GET`
-- **Query Parameter:**
-  - `url`: The URL of the image to be processed.
+- **URL:** `http://localhost:3000/api/ocr/glensweb`
+- **Method:** `POST`
+- **Headers:** `Content-Type: multipart/form-data`
+- **Body:** Form-data with a key `image` containing the image file.
 
 **Example using cURL:**
 
-
 ```bash
-curl "http://localhost:3000/scan?url=https://example.com/image.png"
+curl -X POST -F "image=@path_to_your_image.png" http://localhost:3000/api/ocr/glensweb
 ```
-
-
-**Response:**
-
-
-```json
-{
-  "text": "Extracted text from the image",
-  "confidence": 0.97,
-  "words": [
-    {
-      "word": "Extracted",
-      "boundingBox": [x1, y1, x2, y2],
-      "confidence": 0.98
-    },
-    ...
-  ]
-}
-```
-
 
 ## Docker Deployment
 
